@@ -1,0 +1,27 @@
+@startuml
+left to right direction
+
+actor "Empresa Vendedora" as EV
+actor "Empresa Compradora" as EC
+
+package "Sistema de Comércio de Materiais Recicláveis" {
+    usecase "UC01: Registrar Empresa" as UC01
+    usecase "UC02: Listar Materiais Recicláveis" as UC02
+    usecase "UC03: Ofertar Material Reciclável" as UC03
+    usecase "UC04: Negociar Preço" as UC04
+    usecase "UC05: Gerenciar Espaço de Coleta" as UC05
+    usecase "UC06: Monitorar Transações" as UC06
+    usecase "UC07: Exibir Ranking de Sustentabilidade" as UC07
+}
+
+EV --> UC01
+EV --> UC03
+EV --> UC05
+EV --> UC06
+
+EC --> UC02
+EC --> UC04
+EC --> UC06
+EC --> UC07
+
+@enduml

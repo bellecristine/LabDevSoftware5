@@ -1,0 +1,39 @@
+@startuml
+package "Sistema de Comércio de Materiais Recicláveis" {
+    package "Camada de Apresentação" {
+        class "Interface Web"
+        class "Interface de Administração"
+    }
+
+    package "Camada de Negócio" {
+        class "Gerenciamento de Usuários"
+        class "Gestão de Materiais Recicláveis"
+        class "Negociação de Preços"
+        class "Ranking Sustentável"
+        class "Monitoramento de Transações"
+    }
+
+    package "Camada de Persistência" {
+        class "Banco de Dados"
+        class "Repositório de Usuários"
+        class "Repositório de Materiais"
+        class "Repositório de Transações"
+    }
+
+    package "Camada de Integração" {
+        class "Serviços Externos"
+        class "APIs de Geolocalização"
+    }
+
+    "Interface Web" --> "Gerenciamento de Usuários"
+    "Interface de Administração" --> "Gestão de Materiais Recicláveis"
+    "Interface Web" --> "Ranking Sustentável"
+    "Gerenciamento de Usuários" --> "Repositório de Usuários"
+    "Gestão de Materiais Recicláveis" --> "Repositório de Materiais"
+    "Negociação de Preços" --> "Repositório de Transações"
+    "Monitoramento de Transações" --> "Banco de Dados"
+    "Ranking Sustentável" --> "Banco de Dados"
+    "Serviços Externos" --> "APIs de Geolocalização"
+    "Gestão de Materiais Recicláveis" --> "APIs de Geolocalização"
+}
+@enduml

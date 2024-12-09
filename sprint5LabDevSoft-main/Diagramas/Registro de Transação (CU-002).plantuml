@@ -1,0 +1,16 @@
+@startuml
+actor EmpresaCompradora as EC
+participant "Tela de Transação" as Tela
+participant "ControladorTransacao" as Controlador
+participant "Transacao" as Transacao
+participant "Banco de Dados" as BD
+
+EC -> Tela : Seleciona material reciclável
+Tela -> Controlador : Envia solicitação de compra
+Controlador -> Transacao : Cria objeto Transacao
+Transacao -> BD : Salva transação no banco
+BD --> Transacao : Confirmação de salvamento
+Transacao --> Controlador : Confirmação de criação
+Controlador --> Tela : Exibe status da transação
+Tela --> EC : Transação registrada
+@enduml

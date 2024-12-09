@@ -1,0 +1,16 @@
+@startuml
+actor EmpresaCompradora as EC
+participant "Tela de Ranking" as Tela
+participant "ControladorRanking" as Controlador
+participant "RankingSustentavel" as Ranking
+participant "Banco de Dados" as BD
+
+EC -> Tela : Solicita visualização do ranking
+Tela -> Controlador : Requisita dados do ranking
+Controlador -> Ranking : Busca informações atualizadas
+Ranking -> BD : Consulta dados de empresas
+BD --> Ranking : Retorna dados
+Ranking --> Controlador : Envia ranking atualizado
+Controlador --> Tela : Exibe ranking
+Tela --> EC : Mostra ranking sustentável
+@enduml

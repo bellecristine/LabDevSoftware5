@@ -1,0 +1,69 @@
+@startuml
+' Definição de classes com atributos e métodos
+
+class Usuario {
+    - id: int
+    - nome: String
+    - email: String
+    - senha: String
+    + autenticar(): boolean
+    + registrar(): void
+}
+
+class EmpresaVendedora {
+    - cnpj: String
+    - materiaisDisponiveis: List<MaterialReciclavel>
+    + adicionarMaterial(): void
+    + listarMateriais(): List<MaterialReciclavel>
+}
+
+class EmpresaCompradora {
+    - cnpj: String
+    - historicoCompras: List<Transacao>
+    + buscarMateriais(): List<MaterialReciclavel>
+    + realizarCompra(MaterialReciclavel): Transacao
+}
+
+class MaterialReciclavel {
+    - id: int
+    - tipo: String
+    - quantidade: double
+    - precoPorUnidade: double
+    + calcularPrecoTotal(): double
+}
+
+class Transacao {
+    - id: int
+    - data: Date
+    - quantidade: double
+    - precoTotal: double
+    + registrar(): void
+    + gerarRecibo(): String
+}
+
+class RankingSustentavel {
+    - empresasPontuacao: Map<Empresa, int>
+    + calcularPontuacao(Empresa): void
+    + exibirRanking(): void
+}
+
+class EspacoColeta {
+    - id: int
+    - endereco: String
+    - capacidade: double
+    + verificarDisponibilidade(): boolean
+    + registrarColeta(MaterialReciclavel): void
+}
+
+' Relacionamentos entre classes
+
+Usuario <|-- EmpresaVendedora
+Usuario <|-- EmpresaCompradora
+EmpresaVendedora "1" *-- "n" MaterialReciclavel
+EmpresaCompradora "1" *-- "n" Transacao
+MaterialReciclavel "1" o-- "1" EspacoColeta
+RankingSustentavel "1" --* "n" EmpresaVendedora
+RankingSustentavel "1" --* "n" EmpresaCompradora
+Transacao "n" --> "1" MaterialReciclavel
+
+@enduml

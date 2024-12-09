@@ -1,0 +1,16 @@
+@startuml
+actor EmpresaVendedora as EV
+participant "Tela de Cadastro" as Tela
+participant "ControladorMaterial" as Controlador
+participant "MaterialReciclavel" as Material
+participant "Banco de Dados" as BD
+
+EV -> Tela : Preenche formulário de cadastro
+Tela -> Controlador : Envia dados do formulário
+Controlador -> Material : Cria objeto MaterialReciclavel
+Material -> BD : Salva no banco de dados
+BD --> Material : Confirmação de salvamento
+Material --> Controlador : Confirmação de criação
+Controlador --> Tela : Exibe mensagem de sucesso
+Tela --> EV : Cadastro concluído
+@enduml
